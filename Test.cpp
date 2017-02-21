@@ -90,6 +90,8 @@
 //	return 0;
 //}
 
+
+//String类
 #include<iostream>
 #include<malloc.h>
 
@@ -255,9 +257,164 @@ int main()
 	//delete p;//->析构函数->operator delete->free
 
 	////delete (Date*)(((int*)p)-1);
-
-
-
 	FunTest1();
 	return 0;
 }
+
+
+
+//日期类
+//#include <iostream>
+//using namespace std;
+//
+//class Date
+//{
+//	friend ostream& operator<<(ostream& _cout, const Date& d);
+//public:
+//	//考虑非法日期
+//	Date(int year = 2000 , int month = 10, int day = 1)
+//		: _year(year)
+//		, _month(month)
+//		, _day(day)
+//	{
+//		if (_month > 12 || _month <= 0){
+//			cout << "date error!" << endl;
+//		}
+//		else if ((_year % 4 == 0 && _year % 100 != 0) || _year % 400 == 0){
+//			if ((1 == _month) || (3 == _month) || (5 == _month) || (7 == _month) \
+//				|| (8 == _month) || (10 == _month) || (12 == _month)){
+//				if (_day > 31 || _day <= 0){
+//					cout << "date error!" << endl;
+//				}
+//			}
+//			if (2 == month){
+//				if (_day > 29 || _day <= 0){
+//					cout << "date error!" << endl;
+//				}
+//			}
+//			else{
+//				if (_day > 30 || _day <= 0){
+//					cout << "date error!" << endl;
+//				}
+//			}
+//		}
+//		else{
+//			if ((1 == _month) || (3 == _month) || (5 == _month) || (7 == _month) \
+//				|| (8 == _month) || (10 == _month) || (12 == _month)){
+//				if (_day > 31 || _day <= 0){
+//					cout << "date error!" << endl;
+//				}
+//			}
+//			if (2 == month){
+//				if (_day > 28 || _day <= 0){
+//					cout << "date error!" << endl;
+//				}
+//			}
+//			else{
+//				if (_day > 30 || _day <= 0){
+//					cout << "date error!" << endl;
+//				}
+//			}
+//		}
+//	}
+//
+//	Date(const Date& d)
+//	{
+//		_year = d._year;
+//		_month = d._month;
+//		_day = d._day;
+//	}
+//
+//	Date& operator=(const Date& d)
+//	{
+//		this->_year = d._year;
+//		this->_month = d._month;
+//		this->_day = d._day;
+//		return *this;
+//	}
+//
+//	Date operator+(int days)
+//	{
+//		this->_day = this->_day + days;
+//		return *this;
+//	}
+//
+//	Date operator-(int days)
+//	{
+//		this->_day = this->_day - days;
+//		return *this;
+//	}
+//
+//	int operator-(const Date& d)
+//	{
+//		this->_year = this->_year - d._year;
+//		this->_month = this->_month - d._month;
+//		this->_day = this->_day - d._day;
+//		return this->_day;
+//	}
+//
+//	Date& operator++()
+//	{
+//		this->_year += 1;
+//		this->_month += 1;
+//		this->_day += 1;
+//		return *this;
+//	}
+//
+//	Date operator++(int)
+//	{
+//		Date temp = *this;
+//		this->_year += 1;
+//		this->_month += 1;
+//		this->_day += 1;
+//		return temp;
+//	}
+//
+//	Date& operator--()
+//	{
+//		this->_year -= 1;
+//		this->_month -= 1;
+//		this->_day -= 1;
+//		return *this;
+//	}
+//
+//	Date operator--(int)
+//	{
+//		Date temp = *this;
+//		this->_year -= 1;
+//		this->_month -= 1;
+//		this->_day -= 1;
+//		return temp;
+//	}
+//
+//private:
+//	int _year;
+//	int _month;
+//	int _day;
+//};
+//
+//ostream& operator<<(ostream& _cout, const Date& d)
+//{
+//	_cout << d._year << "-" << d._month << "-" << d._day << endl;
+//	return _cout;
+//}
+//
+//void FunTest()
+//{
+//	Date li(2016, 2, 29);
+//	Date gq;
+//	cout << li << endl;
+//	cout << gq << endl;
+//
+//	++li;
+//	cout << li << endl;
+//
+//	li = li - 3;
+//	cout << li << endl;
+//}
+//
+//int main()
+//{
+//	FunTest();
+//	return 0;
+//}
