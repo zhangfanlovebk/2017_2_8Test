@@ -756,43 +756,81 @@
 #include <iostream>
 using namespace std;
 
-class TPoint
+//class TPoint
+//{
+//public:
+//	void SetPoint(int x,int y);
+//	int Xcoord()
+//	{
+//		return X;
+//	}
+//	int Ycoord()
+//	{
+//		return Y;
+//	}
+//	void Move(int xOffset,int yOffset);
+//private:
+//	int X,Y;
+//};
+//
+//void TPoint::SetPoint(int x,int y)
+//{
+//	X = x;
+//	Y = y;
+//}
+//
+//void TPoint::Move(int xOffset,int yOffset)
+//{
+//	X += xOffset;
+//	Y += yOffset;
+//}
+//
+//int main()
+//{
+//	TPoint p1,p2;
+//	p1.SetPoint(3,5);
+//	p2.SetPoint(8,10);
+//	p1.Move(2,1);
+//	p2.Move(1,-2);
+//	cout<<"x1 = "<<p1.Xcoord()<<",y1 = "<<p1.Ycoord()<<endl;//(5,6)
+//	cout<<"x2 = "<<p2.Xcoord()<<",y2 = "<<p2.Ycoord()<<endl;//(9,8)
+//	return 0;
+//}
+
+class TDate1
 {
 public:
-	void SetPoint(int x,int y);
-	int Xcoord()
-	{
-		return X;
-	}
-	int Ycoord()
-	{
-		return Y;
-	}
-	void Move(int xOffset,int yOffset);
+	TDate1(int y,int m,int d);
+	~TDate1();
+	void Print();
 private:
-	int X,Y;
+	int year,month,day;
 };
 
-void TPoint::SetPoint(int x,int y)
+TDate1::TDate1(int y,int m,int d)
 {
-	X = x;
-	Y = y;
+	year = y;
+	month = m;
+	day = d;
+	cout<<"Constructor called."<<endl;
 }
 
-void TPoint::Move(int xOffset,int yOffset)
+TDate1::~TDate1()
 {
-	X += xOffset;
-	Y += yOffset;
+	cout<<"Destructor called."<<endl;
+}
+
+void TDate1::Print()
+{
+	cout<<year<<"."<<month<<"."<<day<<endl;
 }
 
 int main()
 {
-	TPoint p1,p2;
-	p1.SetPoint(3,5);
-	p2.SetPoint(8,10);
-	p1.Move(2,1);
-	p2.Move(1,-2);
-	cout<<"x1 = "<<p1.Xcoord()<<",y1 = "<<p1.Ycoord()<<endl;
-	cout<<"x2 = "<<p2.Xcoord()<<",y2 = "<<p2.Ycoord()<<endl;
+	TDate1 today(2017,3,4),tomorrow(2017,3,5);
+	cout<<"today is "<<;
+	today.Print();
+	cout<<"tomorrow is ";
+	tomorrow.Print();
 	return 0;
 }
