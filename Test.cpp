@@ -753,8 +753,8 @@
 //	return 0;
 //}
 
-#include <iostream>
-using namespace std;
+//#include <iostream>
+//using namespace std;
 
 //class TPoint
 //{
@@ -797,40 +797,111 @@ using namespace std;
 //	return 0;
 //}
 
-class TDate1
+//class TDate1
+//{
+//public:
+//	TDate1(int y,int m,int d);
+//	~TDate1();
+//	void Print();
+//private:
+//	int year,month,day;
+//};
+//
+//TDate1::TDate1(int y,int m,int d)
+//{
+//	year = y;
+//	month = m;
+//	day = d;
+//	cout<<"Constructor called."<<endl;
+//}
+//
+//TDate1::~TDate1()
+//{
+//	cout<<"Destructor called."<<endl;
+//}
+//
+//void TDate1::Print()
+//{
+//	cout<<year<<"."<<month<<"."<<day<<endl;
+//}
+//
+//int main()
+//{
+//	TDate1 today(2017,3,4),tomorrow(2017,3,5);
+//	cout<<"today is "<<;
+//	today.Print();
+//	cout<<"tomorrow is ";
+//	tomorrow.Print();
+//	return 0;
+//}
+
+
+//КЏЪ§жиди
+#include <iostream>
+
+using namespace std;
+
+class M
 {
 public:
-	TDate1(int y,int m,int d);
-	~TDate1();
-	void Print();
+	M(int x,int y)
+	{
+		X = x;
+		Y = y;
+	}
+
+	M(int x)
+	{
+		X = x;
+		Y = x * x;
+	}
+
+	int add(int x,int y);
+
+	int add(int x);
+
+	int add();
+
+	int Xout()
+	{
+		return X;
+	}
+
+	int Yout()
+	{
+		return Y;
+	}
+
 private:
-	int year,month,day;
+	int X,Y;
 };
 
-TDate1::TDate1(int y,int m,int d)
+int M::add(int x, int y)
 {
-	year = y;
-	month = m;
-	day = d;
-	cout<<"Constructor called."<<endl;
+	X = x;
+	Y = y;
+	return X + Y;
 }
 
-TDate1::~TDate1()
+int M::add(int x)
 {
-	cout<<"Destructor called."<<endl;
+	X = Y = x;
+	return X + Y;
 }
 
-void TDate1::Print()
+int M::add()
 {
-	cout<<year<<"."<<month<<"."<<day<<endl;
+	return X + Y;
 }
 
 int main()
 {
-	TDate1 today(2017,3,4),tomorrow(2017,3,5);
-	cout<<"today is "<<;
-	today.Print();
-	cout<<"tomorrow is ";
-	tomorrow.Print();
+	M a(10,20),b(4);
+	cout<<"a = "<<a.Xout()<<","<<a.Yout()<<endl;//10,20
+	cout<<"b = "<<b.Xout()<<","<<b.Yout()<<endl;//4,16
+	int i = a.add();//30
+	int j = a.add(3,9);//12
+	int k = b.add(5);//10
+	cout<<i<<endl<<j<<endl<<k<<endl;
 	return 0;
 }
