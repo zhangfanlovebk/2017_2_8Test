@@ -837,71 +837,145 @@
 
 
 //函数重载
-#include <iostream>
+//#include <iostream>
+//using namespace std;
+//
+//class M
+//{
+//public:
+//	M(int x,int y)
+//	{
+//		X = x;
+//		Y = y;
+//	}
+//
+//	M(int x)
+//	{
+//		X = x;
+//		Y = x * x;
+//	}
+//
+//	int add(int x,int y);
+//	int add(int x);
+//	int add();
+//
+//	int Xout()
+//	{
+//		return X;
+//	}
+//
+//	int Yout()
+//	{
+//		return Y;
+//	}
+//
+//private:
+//	int X,Y;
+//};
+//
+//int M::add(int x, int y)
+//{
+//	X = x;
+//	Y = y;
+//	return X + Y;
+//}
+//
+//int M::add(int x)
+//{
+//	X = Y = x;
+//	return X + Y;
+//}
+//
+//int M::add()
+//{
+//	return X + Y;
+//}
+//
+//int main()
+//{
+//	M a(10,20),b(4);
+//	cout<<"a = "<<a.Xout()<<","<<a.Yout()<<endl;//10,20
+//	cout<<"b = "<<b.Xout()<<","<<b.Yout()<<endl;//4,16
+//	int i = a.add();//30
+//	int j = a.add(3,9);//12
+//	int k = b.add(5);//10
+//	cout<<i<<endl<<j<<endl<<k<<endl;
+//	return 0;
+//}
 
+//静态数据成员
+#include <iostream>
 using namespace std;
 
+//class My
+//{
+//public:
+//	My(int a,int b,int c);
+//	void GetNumber();
+//	void GetSum();
+//private:
+//	int A,B,C;
+//	static int Sum;
+//};
+//
+//int My::Sum = 0;
+////静态数据成员是多个对象共享的
+////每次不遵循初始化更新，保存上次结果继续计算
+////静态成员必须初始化，在类体外进行
+//
+//My::My(int a, int b, int c)
+//{
+//	A = a;
+//	B = b;
+//	C = c;
+//	Sum += A + B + C;
+//}
+//
+//void My::GetNumber()
+//{
+//	cout<<"Number = "<<A<<","<<B<<","<<C<<endl;
+//}
+//
+//void My::GetSum()
+//{
+//	cout<<"Sum = "<<Sum<<endl;
+//}
+//
+//void main()
+//{
+//	My M(3,7,10),N(14,9,11);
+//	M.GetNumber();//3,7,10
+//	N.GetNumber();//14,9,11
+//	M.GetSum();//54
+//	N.GetSum();//54
+//}
+
+//静态成员函数
 class M
 {
 public:
-	M(int x,int y)
+	M(int a)
 	{
-		X = x;
-		Y = y;
+		A = a;
+		B += a;
 	}
-
-	M(int x)
-	{
-		X = x;
-		Y = x * x;
-	}
-
-	int add(int x,int y);
-
-	int add(int x);
-
-	int add();
-
-	int Xout()
-	{
-		return X;
-	}
-
-	int Yout()
-	{
-		return Y;
-	}
-
+	static void f1(M m);//静态成员函数，属于类
 private:
-	int X,Y;
+	int A;
+	static int B;//对所有对象都是共有的，保证所有对象存取更新后相同的值
 };
 
-int M::add(int x, int y)
+void M::f1(M m)
 {
-	X = x;
-	Y = y;
-	return X + Y;
+	cout<<"A = "<<m.A<<endl;//对象引用非静态成员   m.A
+	cout<<"B = "<<B<<endl;//静态成员直接引用       B
 }
 
-int M::add(int x)
-{
-	X = Y = x;
-	return X + Y;
-}
+int M::B = 0;//类名限定
 
-int M::add()
+void main()
 {
-	return X + Y;
-}
-
-int main()
-{
-	M a(10,20),b(4);
-	cout<<"a = "<<a.Xout()<<","<<a.Yout()<<endl;//10,20
-	cout<<"b = "<<b.Xout()<<","<<b.Yout()<<endl;//4,16
-	int i = a.add();//30
-	int j = a.add(3,9);//12
-	int k = b.add(5);//10
-	cout<<i<<endl<<j<<endl<<k<<endl;
-	return 0;
-}
+	M P(5),Q(10);//同时进行
+	M::f1(P);//5,15
+	M::f1(Q);//10,15
+}//静态成员对象相当于公用的，都保存更新到最后一次计算的值
