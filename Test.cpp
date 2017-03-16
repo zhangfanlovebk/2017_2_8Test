@@ -904,9 +904,9 @@
 //}
 
 //静态数据成员
-#include <iostream>
-using namespace std;
-
+//#include <iostream>
+//using namespace std;
+//
 //class My
 //{
 //public:
@@ -951,31 +951,77 @@ using namespace std;
 //}
 
 //静态成员函数
-class M
+//class M
+//{
+//public:
+//	M(int a)
+//	{
+//		A = a;
+//		B += a;
+//	}
+//	static void f1(M m);//静态成员函数，属于类
+//private:
+//	int A;
+//	static int B;//对所有对象都是共有的，保证所有对象存取更新后相同的值
+//};
+//
+//void M::f1(M m)
+//{
+//	cout<<"A = "<<m.A<<endl;//对象引用非静态成员   m.A
+//	cout<<"B = "<<B<<endl;//静态成员直接引用       B
+//}
+//
+//int M::B = 0;//类名限定
+//
+//void main()
+//{
+//	M P(5),Q(10);//同时进行
+//	M::f1(P);//5,15
+//	M::f1(Q);//10,15
+//}//静态成员对象相当于公用的，都保存更新到最后一次计算的值
+
+
+//指向类成员的指针
+#include <iostream>
+using namespace std;
+
+class A
 {
 public:
-	M(int a)
+	A(int i)
 	{
-		A = a;
-		B += a;
+		a = i;
 	}
-	static void f1(M m);//静态成员函数，属于类
+	int fun(int b)
+	{
+		return a * c + b;
+	}
+	int c;//公有成员
 private:
-	int A;
-	static int B;//对所有对象都是共有的，保证所有对象存取更新后相同的值
+	int a;
 };
-
-void M::f1(M m)
-{
-	cout<<"A = "<<m.A<<endl;//对象引用非静态成员   m.A
-	cout<<"B = "<<B<<endl;//静态成员直接引用       B
-}
-
-int M::B = 0;//类名限定
 
 void main()
 {
-	M P(5),Q(10);//同时进行
-	M::f1(P);//5,15
-	M::f1(Q);//10,15
-}//静态成员对象相当于公用的，都保存更新到最后一次计算的值
+	A x(8);//给a初始化为8
+	int A::*pc;//定义指向类数据成员指针pc
+	pc = &A::c;//pc指向c
+
+	x.*pc = 3;//给指针引用、调用。即给c赋值3
+	int(A::*pfun)(int);//定义指向类成员函数指针pfun
+	pfun = &A::fun;//pfun指向fun函数
+
+	A *p = &x;//指向对象的指针
+	//若不定义指针p，则下面  x.*pfun
+	cout<<(p->*pfun)(5)<<endl;//fun函数实参为5，与“p->fun(5)”等价
+	//cout<<p->fun(5)<<endl;
+}
+//总结：
+//1.先要定义指向类数据成员或成员函数的指针
+//int A::*pc		int(A::*pfun)(int)
+//2.然后将指针指向要指向的内容
+//pc = &A::c		pfun = &A::fun
+//前两步可以简写为
+//int A::*pc = &A::c
+//int(A::*pfun)(int) = &A::fun
+//3.对指针赋值要注意赋值格式
