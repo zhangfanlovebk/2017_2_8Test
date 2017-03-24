@@ -1,3 +1,6 @@
+//#define CRT_SECURE_NO_WARNINGS 1
+//#pragma warning(disable:4996)
+
 //#include <iostream>
 //using namespace std;
 
@@ -981,47 +984,88 @@
 //}//静态成员对象相当于公用的，都保存更新到最后一次计算的值
 
 
-//指向类成员的指针
+////指向类成员的指针
+//#include <iostream>
+//using namespace std;
+//
+//class A
+//{
+//public:
+//	A(int i)
+//	{
+//		a = i;
+//	}
+//	int fun(int b)
+//	{
+//		return a * c + b;
+//	}
+//	int c;//公有成员
+//private:
+//	int a;
+//};
+//
+//void main()
+//{
+//	A x(8);//给a初始化为8
+//	int A::*pc;//定义指向类数据成员指针pc
+//	pc = &A::c;//pc指向c
+//
+//	x.*pc = 3;//给指针引用、调用。即给c赋值3
+//	int(A::*pfun)(int);//定义指向类成员函数指针pfun
+//	pfun = &A::fun;//pfun指向fun函数
+//
+//	A *p = &x;//指向对象的指针
+//	//若不定义指针p，则下面  x.*pfun
+//	cout<<(p->*pfun)(5)<<endl;//fun函数实参为5，与“p->fun(5)”等价
+//	//cout<<p->fun(5)<<endl;
+//}
+////总结：
+////1.先要定义指向类数据成员或成员函数的指针
+////int A::*pc		int(A::*pfun)(int)
+////2.然后将指针指向要指向的内容
+////pc = &A::c		pfun = &A::fun
+////前两步可以简写为
+////int A::*pc = &A::c
+////int(A::*pfun)(int) = &A::fun
+////3.对指针赋值要注意赋值格式
+
+//对象的生存期
 #include <iostream>
+#include <string.h>
 using namespace std;
 
 class A
 {
 public:
-	A(int i)
-	{
-		a = i;
-	}
-	int fun(int b)
-	{
-		return a * c + b;
-	}
-	int c;//公有成员
+	A(char *st);
+	~A();
 private:
-	int a;
+	char string[50];
 };
+
+A::A(char *st)
+{
+	strcpy(string,st);
+	cout<<"constructor called for"<<string<<endl;
+}
+A::~A()
+{
+	cout<<"Destructor called for"<<string<<endl;
+}
+
+void fun()
+{
+	A FunObject("FunObject");
+	static A staticObject("StaticObject");
+	cout<<"In fun()."<<endl;
+}
+
+A GlobalObject("GlobalObject");
 
 void main()
 {
-	A x(8);//给a初始化为8
-	int A::*pc;//定义指向类数据成员指针pc
-	pc = &A::c;//pc指向c
-
-	x.*pc = 3;//给指针引用、调用。即给c赋值3
-	int(A::*pfun)(int);//定义指向类成员函数指针pfun
-	pfun = &A::fun;//pfun指向fun函数
-
-	A *p = &x;//指向对象的指针
-	//若不定义指针p，则下面  x.*pfun
-	cout<<(p->*pfun)(5)<<endl;//fun函数实参为5，与“p->fun(5)”等价
-	//cout<<p->fun(5)<<endl;
+	A MainObject("MainObject");
+	cout<<"In main(),befor called fun"<<endl;
+	fun();
+	cout<<"In main(),after called fun"<<endl;
 }
-//总结：
-//1.先要定义指向类数据成员或成员函数的指针
-//int A::*pc		int(A::*pfun)(int)
-//2.然后将指针指向要指向的内容
-//pc = &A::c		pfun = &A::fun
-//前两步可以简写为
-//int A::*pc = &A::c
-//int(A::*pfun)(int) = &A::fun
-//3.对指针赋值要注意赋值格式
