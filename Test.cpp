@@ -1030,42 +1030,51 @@
 ////3.对指针赋值要注意赋值格式
 
 //对象的生存期
+//#include <iostream>
+//#include <string.h>
+//using namespace std;
+//
+//class A
+//{
+//public:
+//	A(char *st);
+//	~A();
+//private:
+//	char string[50];
+//};
+//
+//A::A(char *st)
+//{
+//	strcpy(string,st);
+//	cout<<"constructor called for"<<string<<endl;
+//}
+//A::~A()
+//{
+//	cout<<"Destructor called for"<<string<<endl;
+//}
+//
+//void fun()
+//{
+//	A FunObject("FunObject");
+//	static A staticObject("StaticObject");
+//	cout<<"In fun()."<<endl;
+//}
+//
+//A GlobalObject("GlobalObject");
+//
+//void main()
+//{
+//	A MainObject("MainObject");
+//	cout<<"In main(),befor called fun"<<endl;
+//	fun();
+//	cout<<"In main(),after called fun"<<endl;
+//}
+
 #include <iostream>
-#include <string.h>
 using namespace std;
 
-class A
+int main()
 {
-public:
-	A(char *st);
-	~A();
-private:
-	char string[50];
-};
-
-A::A(char *st)
-{
-	strcpy(string,st);
-	cout<<"constructor called for"<<string<<endl;
-}
-A::~A()
-{
-	cout<<"Destructor called for"<<string<<endl;
-}
-
-void fun()
-{
-	A FunObject("FunObject");
-	static A staticObject("StaticObject");
-	cout<<"In fun()."<<endl;
-}
-
-A GlobalObject("GlobalObject");
-
-void main()
-{
-	A MainObject("MainObject");
-	cout<<"In main(),befor called fun"<<endl;
-	fun();
-	cout<<"In main(),after called fun"<<endl;
+	cout<<"hello git."<<endl;
+	return 0;
 }
