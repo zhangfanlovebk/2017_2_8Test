@@ -1070,3 +1070,54 @@
 //	cout<<"In main(),after called fun"<<endl;
 //}
 
+//对象引用作为函数参数
+#include <iostream>
+using namespace std;
+
+class M
+{
+public:
+	M()
+	{
+		x = y = 0;
+	}
+	M(int i,int j)
+	{
+		x = i;
+		y = j;
+	}
+	void copy(M &m);//声明
+	void setxy(int i,int j)
+	{
+		x = i;
+		y = j;
+	}
+	void print()
+	{
+		cout<<x<<","<<y<<endl;
+	}
+private:
+	int x,y;
+};
+
+void M::copy(M &m)//定义
+{
+	x = m.x;
+	y = m.y;
+}
+
+void fun(M m1,M &m2)//m1相当于传值调用,m2相当于传址调用
+{
+	m1.setxy(12,25);
+	m2.setxy(22,25);
+}
+
+void main()
+{
+	M p(5,7),q;//q(0,0)
+	q.copy(p);//q(5,7)
+	fun(p,q);//p(5,7)  q(22,25)
+	//m1和p是两个对象，m2和q相当于同一对象
+	p.print();//p(5,7)
+	q.print();//q(22,25)
+}
