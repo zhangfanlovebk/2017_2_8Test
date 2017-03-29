@@ -1086,7 +1086,7 @@ public:
 		x = i;
 		y = j;
 	}
-	void copy(M &m);//声明
+	void copy(M &m);//声明				(M *m)
 	void setxy(int i,int j)
 	{
 		x = i;
@@ -1100,16 +1100,16 @@ private:
 	int x,y;
 };
 
-void M::copy(M &m)//定义
+void M::copy(M &m)//定义				(M *m)
 {
-	x = m.x;
-	y = m.y;
+	x = m.x;						//x = m->x;
+	y = m.y;						//y = m->y;
 }
 
-void fun(M m1,M &m2)//m1相当于传值调用,m2相当于传址调用
+void fun(M m1,M &m2)//m1相当于传值调用,m2相当于传址调用			M *m2
 {
 	m1.setxy(12,25);
-	m2.setxy(22,25);
+	m2.setxy(22,25);				//m2->setxy(22,25)
 }
 
 void main()
@@ -1121,3 +1121,5 @@ void main()
 	p.print();//p(5,7)
 	q.print();//q(22,25)
 }
+//使用对象引用作为函数参数要比使用对象指针作为函数更普遍。
+//引用有指针的优点而且更加简单直接
