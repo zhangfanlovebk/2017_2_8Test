@@ -1071,55 +1071,92 @@
 //}
 
 //对象引用作为函数参数
+//#include <iostream>
+//using namespace std;
+//
+//class M
+//{
+//public:
+//	M()
+//	{
+//		x = y = 0;
+//	}
+//	M(int i,int j)
+//	{
+//		x = i;
+//		y = j;
+//	}
+//	void copy(M &m);//声明				(M *m)
+//	void setxy(int i,int j)
+//	{
+//		x = i;
+//		y = j;
+//	}
+//	void print()
+//	{
+//		cout<<x<<","<<y<<endl;
+//	}
+//private:
+//	int x,y;
+//};
+//
+//void M::copy(M &m)//定义				(M *m)
+//{
+//	x = m.x;						//x = m->x;
+//	y = m.y;						//y = m->y;
+//}
+//
+//void fun(M m1,M &m2)//m1相当于传值调用,m2相当于传址调用			M *m2
+//{
+//	m1.setxy(12,25);
+//	m2.setxy(22,25);				//m2->setxy(22,25)
+//}
+//
+//void main()
+//{
+//	M p(5,7),q;//q(0,0)
+//	q.copy(p);//q(5,7)
+//	fun(p,q);//p(5,7)  q(22,25)
+//	//m1和p是两个对象，m2和q相当于同一对象
+//	p.print();//p(5,7)
+//	q.print();//q(22,25)
+//}
+//使用对象引用作为函数参数要比使用对象指针作为函数更普遍。
+//引用有指针的优点而且更加简单直接
+
+//this指针
 #include <iostream>
 using namespace std;
 
-class M
+class A
 {
 public:
-	M()
+	A()
 	{
-		x = y = 0;
+		a = b = 0;
 	}
-	M(int i,int j)
+	A(int i,int j)
 	{
-		x = i;
-		y = j;
+		a = i;
+		b = j;
 	}
-	void copy(M &m);//声明				(M *m)
-	void setxy(int i,int j)
+	void copy(A &aa)
 	{
-		x = i;
-		y = j;
+		if(this == &aa)//this操作该成员函数对象a1的地址
+			return;
+		*this = aa;//将形参aa获得对象的值赋给操作该成员函数的对象a1
 	}
 	void print()
 	{
-		cout<<x<<","<<y<<endl;
+		cout<<a<<","<<b<<endl;
 	}
 private:
-	int x,y;
+	int a,b;
 };
-
-void M::copy(M &m)//定义				(M *m)
-{
-	x = m.x;						//x = m->x;
-	y = m.y;						//y = m->y;
-}
-
-void fun(M m1,M &m2)//m1相当于传值调用,m2相当于传址调用			M *m2
-{
-	m1.setxy(12,25);
-	m2.setxy(22,25);				//m2->setxy(22,25)
-}
 
 void main()
 {
-	M p(5,7),q;//q(0,0)
-	q.copy(p);//q(5,7)
-	fun(p,q);//p(5,7)  q(22,25)
-	//m1和p是两个对象，m2和q相当于同一对象
-	p.print();//p(5,7)
-	q.print();//q(22,25)
+	A a1,a2(5,2);
+	a1.copy(a2);
+	a1.print();
 }
-//使用对象引用作为函数参数要比使用对象指针作为函数更普遍。
-//引用有指针的优点而且更加简单直接
