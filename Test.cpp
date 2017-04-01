@@ -1,5 +1,5 @@
-//#define CRT_SECURE_NO_WARNINGS 1
-//#pragma warning(disable:4996)
+#define CRT_SECURE_NO_WARNINGS 1
+#pragma warning(disable:4996)
 
 //#include <iostream>
 //using namespace std;
@@ -1125,38 +1125,74 @@
 //引用有指针的优点而且更加简单直接
 
 //this指针
+//#include <iostream>
+//using namespace std;
+//
+//class A
+//{
+//public:
+//	A()
+//	{
+//		a = b = 0;
+//	}
+//	A(int i,int j)
+//	{
+//		a = i;
+//		b = j;
+//	}
+//	void copy(A &aa)
+//	{
+//		if(this == &aa)//this操作该成员函数对象a1的地址
+//			return;
+//		*this = aa;//将形参aa获得对象的值赋给操作该成员函数的对象a1
+//	}
+//	void print()
+//	{
+//		cout<<a<<","<<b<<endl;
+//	}
+//private:
+//	int a,b;
+//};
+//
+//void main()
+//{
+//	A a1,a2(5,2);
+//	a1.copy(a2);
+//	a1.print();
+//}
+
 #include <iostream>
 using namespace std;
+//
+//void mul(int n)
+//{
+//	int i,j;
+//	for(i = 1;i <= n;i++){
+//		for(j = 1;j <= i;j++){
+//			//printf("%2d*%2d=%3d ",j,i,i*j);
+//			cout<<j*i=i*j;
+//		}
+//		//printf("\n");
+//		cout<<endl;
+//	}
+//}
 
-class A
+int main()
 {
-public:
-	A()
-	{
-		a = b = 0;
+	//int n = 0;
+	int i,j;
+	////printf("请输入要打印乘法口诀行数：");
+	////scanf("%d",&n);
+	//cout<<"请输入要打印乘法口诀行数：";
+	//cin<<n;
+	//mul(n);
+	for(i = 1;i <= 9;i++){
+		for(j = 1;j <= i;j++){
+			//printf("%2d*%2d=%3d ",j,i,i*j);
+			cout<<j<<"*"<<i<<"="<<i*j<<"\t";
+		}
+		//printf("\n");
+		cout<<endl;
 	}
-	A(int i,int j)
-	{
-		a = i;
-		b = j;
-	}
-	void copy(A &aa)
-	{
-		if(this == &aa)//this操作该成员函数对象a1的地址
-			return;
-		*this = aa;//将形参aa获得对象的值赋给操作该成员函数的对象a1
-	}
-	void print()
-	{
-		cout<<a<<","<<b<<endl;
-	}
-private:
-	int a,b;
-};
-
-void main()
-{
-	A a1,a2(5,2);
-	a1.copy(a2);
-	a1.print();
+	return 0;
 }
