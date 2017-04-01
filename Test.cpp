@@ -1163,35 +1163,14 @@
 
 #include <iostream>
 using namespace std;
-//
-//void mul(int n)
-//{
-//	int i,j;
-//	for(i = 1;i <= n;i++){
-//		for(j = 1;j <= i;j++){
-//			//printf("%2d*%2d=%3d ",j,i,i*j);
-//			cout<<j*i=i*j;
-//		}
-//		//printf("\n");
-//		cout<<endl;
-//	}
-//}
 
 int main()
 {
-	//int n = 0;
 	int i,j;
-	////printf("请输入要打印乘法口诀行数：");
-	////scanf("%d",&n);
-	//cout<<"请输入要打印乘法口诀行数：";
-	//cin<<n;
-	//mul(n);
 	for(i = 1;i <= 9;i++){
 		for(j = 1;j <= i;j++){
-			//printf("%2d*%2d=%3d ",j,i,i*j);
-			cout<<j<<"*"<<i<<"="<<i*j<<"\t";
+			cout<<j<<"*"<<i<<"="<<i*j<<"\t";//"\t"跳格，相当于Tab
 		}
-		//printf("\n");
 		cout<<endl;
 	}
 	return 0;
