@@ -1179,6 +1179,7 @@
 //}
 
 
+//对象数组
 #include <iostream>
 using namespace std;
 
@@ -1216,7 +1217,9 @@ private:
 void main()
 {
 	DATE dates[5]={DATE(7,22,1998),DATE(7,23,1998),DATE(11,20,2003)};
-	dates[3] = DATE(7,25,1998);
+	//调用构造函数
+	dates[3] = DATE(7,25,1998);//调用默认构造函数，调用三个参数构造函数创建无名对象并赋值
+	//调用析构函数将无名对象释放
 	dates[4] = DATE(1,7,2003);
 	for(int i(0);i<5;i++)
 		dates[i].print();
