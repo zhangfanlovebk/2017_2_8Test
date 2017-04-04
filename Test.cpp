@@ -1161,17 +1161,63 @@
 //	a1.print();
 //}
 
+
+//输出乘法口诀表
+//#include <iostream>
+//using namespace std;
+//
+//int main()
+//{
+//	int i,j;
+//	for(i = 1;i <= 9;i++){
+//		for(j = 1;j <= i;j++){
+//			cout<<j<<"*"<<i<<"="<<i*j<<"\t";//"\t"跳格，相当于Tab
+//		}
+//		cout<<endl;
+//	}
+//	return 0;
+//}
+
+
 #include <iostream>
 using namespace std;
 
-int main()
+class DATE
 {
-	int i,j;
-	for(i = 1;i <= 9;i++){
-		for(j = 1;j <= i;j++){
-			cout<<j<<"*"<<i<<"="<<i*j<<"\t";//"\t"跳格，相当于Tab
-		}
-		cout<<endl;
+public:
+	DATE()
+	{
+		month = day = year = 0;
+		cout<<"Default called"<<endl;
 	}
-	return 0;
+
+	DATE(int m,int d,int y)
+	{
+		month = m;
+		day = d;
+		year = y;
+		cout<<"Constructor called"<<endl;
+	}
+
+	~DATE()
+	{
+		cout<<"Destructor called"<<endl;
+	}
+
+	void print()
+	{
+		cout<<"Month="<<month<<",Day="<<day<<",Year="<<year<<endl;
+	}
+
+private:
+	int month,day,year;
+};
+
+void main()
+{
+	DATE dates[5]={DATE(7,22,1998),DATE(7,23,1998),DATE(11,20,2003)};
+	dates[3] = DATE(7,25,1998);
+	dates[4] = DATE(1,7,2003);
+	for(int i(0);i<5;i++)
+		dates[i].print();
 }
