@@ -1286,19 +1286,60 @@ using namespace std;
 //	return 0;
 //}
 
-int func(int x)
+//int func(int x)
+//{
+//	int count = 0;
+//	while(x)
+//	{
+//		count++;
+//		x = x & (x - 1);
+//	}
+//	return count;
+//}
+//
+//int main()
+//{
+//	cout<<func(9995)<<endl;//7
+//	return 0;
+//}
+
+
+class A
 {
-	int count = 0;
-	while(x)
+public:
+	A()
 	{
-		count++;
-		x = x & (x - 1);
+		m_a = 1;
+		m_b = 2;
 	}
-	return count;
-}
+	void fun()
+	{
+		cout<<m_a<<" "<<m_b<<endl;
+	}
+private:
+	int m_a;
+	int m_b;
+};
+
+class B
+{
+public:
+	B()
+	{
+		m_c = 3;
+	}
+	void fun()
+	{
+		cout<<m_c<<endl;
+	}
+private:
+	int m_c;
+};
 
 int main()
 {
-	cout<<func(9995)<<endl;//7
+	A a;//创建A类a对象，m_a=1,m_b=2
+	B* pb = (B*)(&a);
+	pb->fun();//调用B::fun(),输出m_c=1
 	return 0;
 }
