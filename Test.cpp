@@ -1180,47 +1180,125 @@
 
 
 //对象数组
+//#include <iostream>
+//using namespace std;
+//
+//class DATE
+//{
+//public:
+//	DATE()
+//	{
+//		month = day = year = 0;
+//		cout<<"Default called"<<endl;
+//	}
+//
+//	DATE(int m,int d,int y)
+//	{
+//		month = m;
+//		day = d;
+//		year = y;
+//		cout<<"Constructor called"<<endl;
+//	}
+//
+//	~DATE()
+//	{
+//		cout<<"Destructor called"<<endl;
+//	}
+//
+//	void print()
+//	{
+//		cout<<"Month="<<month<<",Day="<<day<<",Year="<<year<<endl;
+//	}
+//
+//private:
+//	int month,day,year;
+//};
+//
+//void main()
+//{
+//	DATE dates[5]={DATE(7,22,1998),DATE(7,23,1998),DATE(11,20,2003)};
+//	//调用构造函数
+//	dates[3] = DATE(7,25,1998);//调用默认构造函数，调用三个参数构造函数创建无名对象并赋值
+//	//调用析构函数将无名对象释放
+//	dates[4] = DATE(1,7,2003);
+//	for(int i(0);i<5;i++)
+//		dates[i].print();
+//}
+
+
 #include <iostream>
 using namespace std;
 
-class DATE
+//class A
+//{
+//public:
+//	virtual void FunTestA()
+//	{}
+//};
+//
+//class B
+//{
+//public:
+//	virtual void FunTestB()
+//	{}
+//};
+//
+//class C:public A,public B
+//{};
+//
+//int main()
+//{
+//	C c;
+//	A* pA = &c;
+//	B* pB = &c;
+//	C* pC = &c;
+//	cout<<pA<<endl;//00AFFC3C
+//	cout<<pB<<endl;//00AFFC40
+//	cout<<pC<<endl;//00AFFC3C
+//	return 0;
+//}
+
+//int main()
+//{
+//	int x = 2,y,z;
+//	x *= (y = z = 5);
+//	cout<<x<<endl;//10
+//
+//	z = 3;
+//	x == (y = z);//==不起作用,y=z=3
+//	cout<<x<<endl;//10
+//
+//	x = (y == z);//真为1
+//	cout<<x<<endl;//1
+//
+//	x = (y & z);//x=y=z=3
+//	cout<<x<<endl;//3
+//
+//	x = (y && z);
+//	cout<<x<<endl;//1
+//
+//	y = 4;
+//	x = (y | z);
+//	cout<<x<<endl;//7
+//
+//	x = (y || z);
+//	cout<<x<<endl;//1
+//	return 0;
+//}
+
+int func(int x)
 {
-public:
-	DATE()
+	int count = 0;
+	while(x)
 	{
-		month = day = year = 0;
-		cout<<"Default called"<<endl;
+		count++;
+		x = x & (x - 1);
 	}
+	return count;
+}
 
-	DATE(int m,int d,int y)
-	{
-		month = m;
-		day = d;
-		year = y;
-		cout<<"Constructor called"<<endl;
-	}
-
-	~DATE()
-	{
-		cout<<"Destructor called"<<endl;
-	}
-
-	void print()
-	{
-		cout<<"Month="<<month<<",Day="<<day<<",Year="<<year<<endl;
-	}
-
-private:
-	int month,day,year;
-};
-
-void main()
+int main()
 {
-	DATE dates[5]={DATE(7,22,1998),DATE(7,23,1998),DATE(11,20,2003)};
-	//调用构造函数
-	dates[3] = DATE(7,25,1998);//调用默认构造函数，调用三个参数构造函数创建无名对象并赋值
-	//调用析构函数将无名对象释放
-	dates[4] = DATE(1,7,2003);
-	for(int i(0);i<5;i++)
-		dates[i].print();
+	cout<<func(9995)<<endl;//7
+	return 0;
 }
