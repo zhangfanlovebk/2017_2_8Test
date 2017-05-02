@@ -1226,120 +1226,136 @@
 //}
 
 
-#include <iostream>
-using namespace std;
-
+//#include <iostream>
+//using namespace std;
+//
+////class A
+////{
+////public:
+////	virtual void FunTestA()
+////	{}
+////};
+////
+////class B
+////{
+////public:
+////	virtual void FunTestB()
+////	{}
+////};
+////
+////class C:public A,public B
+////{};
+////
+////int main()
+////{
+////	C c;
+////	A* pA = &c;
+////	B* pB = &c;
+////	C* pC = &c;
+////	cout<<pA<<endl;//00AFFC3C
+////	cout<<pB<<endl;//00AFFC40
+////	cout<<pC<<endl;//00AFFC3C
+////	return 0;
+////}
+//
+////int main()
+////{
+////	int x = 2,y,z;
+////	x *= (y = z = 5);
+////	cout<<x<<endl;//10
+////
+////	z = 3;
+////	x == (y = z);//==不起作用,y=z=3
+////	cout<<x<<endl;//10
+////
+////	x = (y == z);//真为1
+////	cout<<x<<endl;//1
+////
+////	x = (y & z);//x=y=z=3
+////	cout<<x<<endl;//3
+////
+////	x = (y && z);
+////	cout<<x<<endl;//1
+////
+////	y = 4;
+////	x = (y | z);
+////	cout<<x<<endl;//7
+////
+////	x = (y || z);
+////	cout<<x<<endl;//1
+////	return 0;
+////}
+//
+////int func(int x)
+////{
+////	int count = 0;
+////	while(x)
+////	{
+////		count++;
+////		x = x & (x - 1);
+////	}
+////	return count;
+////}
+////
+////int main()
+////{
+////	cout<<func(9995)<<endl;//7
+////	return 0;
+////}
+//
+//
 //class A
 //{
 //public:
-//	virtual void FunTestA()
-//	{}
+//	A()
+//	{
+//		m_a = 1;
+//		m_b = 2;
+//	}
+//	void fun()
+//	{
+//		cout<<m_a<<" "<<m_b<<endl;
+//	}
+//private:
+//	int m_a;
+//	int m_b;
 //};
 //
 //class B
 //{
 //public:
-//	virtual void FunTestB()
-//	{}
+//	B()
+//	{
+//		m_c = 3;
+//	}
+//	void fun()
+//	{
+//		cout<<m_c<<endl;
+//	}
+//private:
+//	int m_c;
 //};
 //
-//class C:public A,public B
-//{};
-//
 //int main()
 //{
-//	C c;
-//	A* pA = &c;
-//	B* pB = &c;
-//	C* pC = &c;
-//	cout<<pA<<endl;//00AFFC3C
-//	cout<<pB<<endl;//00AFFC40
-//	cout<<pC<<endl;//00AFFC3C
+//	A a;//创建A类a对象，m_a=1,m_b=2
+//	B* pb = (B*)(&a);
+//	pb->fun();//调用B::fun(),输出m_c=1
 //	return 0;
 //}
 
-//int main()
-//{
-//	int x = 2,y,z;
-//	x *= (y = z = 5);
-//	cout<<x<<endl;//10
+//#include <iostream>
+//using namespace std;
 //
-//	z = 3;
-//	x == (y = z);//==不起作用,y=z=3
-//	cout<<x<<endl;//10
+//Shared_ptr <ListNode> cur(new ListNode(1));
+//Shared_ptr <ListNode> next(new ListNode(2));
 //
-//	x = (y == z);//真为1
-//	cout<<x<<endl;//1
+//cout<<"cur:"<<cur.use_count()<<endl;
+//cout<<"next:"<<next.use_count()<<endl;
 //
-//	x = (y & z);//x=y=z=3
-//	cout<<x<<endl;//3
+//cur->_next = next;
+//next->_prev = cur;
 //
-//	x = (y && z);
-//	cout<<x<<endl;//1
-//
-//	y = 4;
-//	x = (y | z);
-//	cout<<x<<endl;//7
-//
-//	x = (y || z);
-//	cout<<x<<endl;//1
-//	return 0;
-//}
+//cout<<"cur:"<<cur.use_count()<<endl;
+//cout<<"next:"<<next.use_count()<<endl;
 
-//int func(int x)
-//{
-//	int count = 0;
-//	while(x)
-//	{
-//		count++;
-//		x = x & (x - 1);
-//	}
-//	return count;
-//}
-//
-//int main()
-//{
-//	cout<<func(9995)<<endl;//7
-//	return 0;
-//}
-
-
-class A
-{
-public:
-	A()
-	{
-		m_a = 1;
-		m_b = 2;
-	}
-	void fun()
-	{
-		cout<<m_a<<" "<<m_b<<endl;
-	}
-private:
-	int m_a;
-	int m_b;
-};
-
-class B
-{
-public:
-	B()
-	{
-		m_c = 3;
-	}
-	void fun()
-	{
-		cout<<m_c<<endl;
-	}
-private:
-	int m_c;
-};
-
-int main()
-{
-	A a;//创建A类a对象，m_a=1,m_b=2
-	B* pb = (B*)(&a);
-	pb->fun();//调用B::fun(),输出m_c=1
-	return 0;
-}
