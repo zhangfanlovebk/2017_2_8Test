@@ -1359,3 +1359,76 @@
 //cout<<"cur:"<<cur.use_count()<<endl;
 //cout<<"next:"<<next.use_count()<<endl;
 
+//二叉树
+//构建当前树或子树
+Node* CreatTree(T* a,size_t n,const T& invalid,size_t& index)//节点、大小、无效、标记
+{
+	Node* root = NULL;
+	if(index < n && a[index] != invalid)
+	{
+		root = new Node(a[index]);
+		root->_left = CreatTree(a,n,invalid,++index);
+		root->_right = CreatTree(a,n,invalid,++index);
+	}
+	return root;
+}
+
+//递归
+//中序遍历->左根右
+void _InOrder(Node* root)
+{
+	if(root == NULL)
+		return;
+	_InOrder(root->_left);
+	cout<<root->_date<<" ";
+	_InOrder(root->_right);
+}
+
+
+
+//求叶节点（第k层）：左子树 + 右子树
+//求深度：分别求左、右子数的深度，取较大值加一
+//查找某值：根-》左子树-》返回右子树
+
+
+
+//非递归
+
+//前序遍历
+//循环依次全左，利用栈的“后进先出”从最深处右子树向上退
+Node* cur = _root;
+while(cur || !s.empty())
+{
+	while(cur)
+	{
+		cout<<cur->_date<<" ";
+		s.push(cur);		//压栈-》后进先出
+		cur = cur->_left;	//左
+	}
+
+	//top从栈中取出，则这个节点的左子树已访问，剩右子树未访问
+	Node* top = s.top();
+	s.pop();
+
+	//循环子问题访问右子树
+	cur = top->_right;
+}
+
+//中序遍历
+void InOrderNonR()
+{
+	Node* cur = _root;
+	stack <Node*>s;
+	while(cur || !s.empty())
+	{
+		while(cur)
+		{
+			s.push(cur);
+			cur = cur->_left;
+		}
+		Node* top = s.top();
+		s.pop();
+		cout<<top->_date<<" ";
+		cur = top->_right;		//子问题
+	}
+}
