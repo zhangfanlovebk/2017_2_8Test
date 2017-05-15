@@ -1432,3 +1432,55 @@ void InOrderNonR()
 		cur = top->_right;		//子问题
 	}
 }
+
+
+
+//后序遍历
+void _PostOrderNoR(Node* root)
+{
+	Node* cur = _root;
+	stack <Node*>s;
+	while(cur || !s.empty())
+	{
+		while(cur)
+		{
+			s.push(cur);
+			cur = cur->_left;
+		}
+		Node* front = s.top();
+		if(front->_right == NULL || front->_right == prev)
+		{
+			cout<<front->_data<<" ";
+			prev = front;
+			s.pop();
+		}
+		else
+		{
+			cur = front->_right;
+		}
+	}
+}
+
+
+void PostOrder()
+{
+	Node* cur = _root;
+	stack <Node*>s;
+	while(cur || !s.empty())
+	{
+		while(cur)
+		{
+			s.push(cur);
+			cur = cur->_left;
+		}
+		Node* top = s.top();
+		if(top->_right == NULL)
+		{
+			cout<<top->_data<<" ";
+			s.pop();
+		}
+		else
+		{
+			cur = top->_right;
+		}
+}
